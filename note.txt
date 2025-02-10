@@ -259,9 +259,11 @@
 - User Manual                               OK
   -> https://wongwaimammoth.serv00.net/user_manual.pdf
 - About                                     OK
-- Deploy production                         pending
-  -> Github
-  -> Vercel
+- Deploy production                         OK
+  -> Github                                 OK
+  -> Vercel                                 OK
+  -> rooms upload image not working         pending
+  
 
 
 

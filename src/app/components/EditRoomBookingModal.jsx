@@ -365,7 +365,7 @@ const EditRoomModal = ({ isOpen, onClose, onSave, roomBooingData }) => {
   };
 
   const handleSelectChange = (name, value) => {
-    // console.log(`${name} selected value:`, value);  // Log the selected value
+    console.log(`${name} selected value:`, value);  // Log the selected value
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,

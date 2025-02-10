@@ -634,10 +634,10 @@ useEffect(() => {
                 const selectedRoom = roomsData.find((room) => room.room_id === formData.room_id);
                 const roomToDisplay = selectedRoom || selectedRooms;
 
-                // If selectedRooms is used, call handleSelectChange with selectedRooms
-                if (roomToDisplay && selectedRooms && selectedRooms.room_id !== formData.room_id) {
-                  handleSelectChange('room_id', selectedRooms.room_id);
-                }
+                // // If selectedRooms is used, call handleSelectChange with selectedRooms
+                // if (roomToDisplay && selectedRooms && selectedRooms.room_id !== formData.room_id) {
+                //   handleSelectChange('room_id', selectedRooms.room_id);
+                // }
 
                 if (roomToDisplay) {
                   return (
