@@ -234,6 +234,55 @@
   -> https://wongwaimammoth.serv00.net/user_manual.pdf
 - About                                     OK
 
+[2025-02-10]
+- Admin                                     OK
+- Register                                  OK
+- Add Room image to Add/Edit Booking        OK
+- Using online database                     OK
+  ;; LOCAL
+  DATABASE_URL="postgresql://neondb_owner:npg_Rbj7DMIkWfK1@ep-curly-bread-a1mljznb-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+  ;; ONLINE
+  DATABASE_URL="postgresql://next_auth15_owner:qU4MjcNg3oKJ@ep-falling-bar-a5fo9kvo-pooler.us-east-2.aws.neon.tech/next_auth15?sslmode=require"
+- Users
+    -> Rooms list                           OK
+    -> Rooms booking management
+        -> Booking list
+        -> show booking items with status   OK
+        -> add Booking                      OK
+        -> edit Booking                     OK
+        -> delete Booking                   OK
+        -> pagination                       OK
+        -> add booking at /room             OK
+- Manager
+    -> Rooms booking Report                 pending
+        -> Generate new page for html style , then button to print
+- User Manual                               OK
+  -> https://wongwaimammoth.serv00.net/user_manual.pdf
+- About                                     OK
+- Deploy production                         pending
+  -> Github
+  -> Vercel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

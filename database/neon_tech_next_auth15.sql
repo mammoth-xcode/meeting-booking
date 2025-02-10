@@ -1,30 +1,20 @@
 /*
  Navicat Premium Dump SQL
 
- Source Server         : PostgreSQL_localhost
+ Source Server         : PostgreSQL_neon.tech_next_auth15
  Source Server Type    : PostgreSQL
- Source Server Version : 150008 (150008)
- Source Host           : localhost:5432
- Source Catalog        : meeting
+ Source Server Version : 150010 (150010)
+ Source Host           : ep-falling-bar-a5fo9kvo-pooler.us-east-2.aws.neon.tech:5432
+ Source Catalog        : next_auth15
  Source Schema         : public
 
  Target Server Type    : PostgreSQL
- Target Server Version : 150008 (150008)
+ Target Server Version : 150010 (150010)
  File Encoding         : 65001
 
- Date: 09/02/2025 12:59:50
+ Date: 10/02/2025 11:04:08
 */
 
-
--- ----------------------------
--- Type structure for AccountVerification
--- ----------------------------
-DROP TYPE IF EXISTS "public"."AccountVerification";
-CREATE TYPE "public"."AccountVerification" AS ENUM (
-  'VERIFIED',
-  'UNVERIFIED'
-);
-ALTER TYPE "public"."AccountVerification" OWNER TO "postgres";
 
 -- ----------------------------
 -- Type structure for UserRole
@@ -35,7 +25,17 @@ CREATE TYPE "public"."UserRole" AS ENUM (
   'USER',
   'MANAGER'
 );
-ALTER TYPE "public"."UserRole" OWNER TO "postgres";
+ALTER TYPE "public"."UserRole" OWNER TO "next_auth15_owner";
+
+-- ----------------------------
+-- Type structure for AccountVerification
+-- ----------------------------
+DROP TYPE IF EXISTS "public"."AccountVerification";
+CREATE TYPE "public"."AccountVerification" AS ENUM (
+  'VERIFIED',
+  'UNVERIFIED'
+);
+ALTER TYPE "public"."AccountVerification" OWNER TO "next_auth15_owner";
 
 -- ----------------------------
 -- Sequence structure for User_employee_id_seq
@@ -70,14 +70,14 @@ CREATE TABLE "public"."Booking" (
 -- ----------------------------
 -- Records of Booking
 -- ----------------------------
-INSERT INTO "public"."Booking" VALUES ('B005', 'R005', 1, '20250207', 'xxx', '20250207', '20250207', '070000', '080000', 'approved', '');
 INSERT INTO "public"."Booking" VALUES ('B003', 'R005', 1, '20250207', 'นโยบ้ายด้านการศึกษา ปี 2567', '20250207', '20250207', '080000', '163000', 'approved', 'ใช้เวลา 2 วัน');
 INSERT INTO "public"."Booking" VALUES ('B006', 'R003', 1, '20250207', 'test', '20250207', '20250207', '130000', '173000', 'approved', '');
 INSERT INTO "public"."Booking" VALUES ('B001', 'R001', 1, '20250205', 'test topic', '20250205', '20250205', '080000', '170000', 'approved', 'rm');
-INSERT INTO "public"."Booking" VALUES ('B002', 'R002', 1, '20250204', 'test 2', '20250205', '20250207', '080000', '160000', 'approved', 'rm2');
-INSERT INTO "public"."Booking" VALUES ('B004', 'R005', 1, '20250207', 'xxx', '20250207', '20250209', '163000', '180000', 'approved', 'test');
 INSERT INTO "public"."Booking" VALUES ('B008', 'R003', 1, '20250209', 'การรับนักศึกษา 2568', '20250209', '20250209', '090000', '120000', 'approved', '');
 INSERT INTO "public"."Booking" VALUES ('B007', 'R002', 1, '20250209', 'นโยบายการเงินการคลัง', '20250209', '20250209', '090000', '120000', 'approved', '');
+INSERT INTO "public"."Booking" VALUES ('B002', 'R002', 1, '20250204', 'test 2', '20250205', '20250207', '080000', '160000', 'approved', 'rm2');
+INSERT INTO "public"."Booking" VALUES ('B005', 'R005', 1, '20250207', 'xxx5', '20250207', '20250207', '070000', '080000', 'approved', '');
+INSERT INTO "public"."Booking" VALUES ('B004', 'R005', 1, '20250207', 'ทดสอบการใช้ postgresql บน neontech', '20250210', '20250210', '083000', '170000', 'approved', 'test');
 
 -- ----------------------------
 -- Table structure for Department
@@ -158,19 +158,19 @@ CREATE TABLE "public"."Room" (
   "roomtype_id" text COLLATE "pg_catalog"."default" NOT NULL,
   "capacity" text COLLATE "pg_catalog"."default",
   "equipment_id" text COLLATE "pg_catalog"."default" NOT NULL,
-  "location" text COLLATE "pg_catalog"."default",
-  "image_name" text COLLATE "pg_catalog"."default"
+  "image_name" text COLLATE "pg_catalog"."default",
+  "location" text COLLATE "pg_catalog"."default"
 )
 ;
 
 -- ----------------------------
 -- Records of Room
 -- ----------------------------
-INSERT INTO "public"."Room" VALUES ('R001', 'ห้องประชุมประกัน', 'RT01', '200', 'EQ01', 'A', 'R001.jpg');
-INSERT INTO "public"."Room" VALUES ('R002', 'ห้องประชุม 2', 'RT02', '1000', 'EQ01', 'B', 'R002.jpg');
-INSERT INTO "public"."Room" VALUES ('R003', 'ห้องประชุม 3', 'RT02', '500', 'EQ01', 'C', 'R003.jpg');
-INSERT INTO "public"."Room" VALUES ('R005', 'ห้องประชุมนาคราช', 'RT03', '3000', 'EQ02', 'ข้างโดมอเนกประสงค์', '');
-INSERT INTO "public"."Room" VALUES ('R004', 'โดมอเนกประสงค์', 'RT03', '2900', 'EQ02', 'D', 'dome001.jpg');
+INSERT INTO "public"."Room" VALUES ('R001', 'ห้องประชุมประกัน', 'RT01', '200', 'EQ01', 'R001.jpg', '');
+INSERT INTO "public"."Room" VALUES ('R002', 'ห้องประชุม 2', 'RT02', '1000', 'EQ01', 'R002.jpg', '');
+INSERT INTO "public"."Room" VALUES ('R003', 'ห้องประชุม 3', 'RT02', '500', 'EQ01', 'R003.jpg', '');
+INSERT INTO "public"."Room" VALUES ('R004', 'โดมอเนกประสงค์', 'RT03', '2900', 'EQ02', 'dome001.jpg', '');
+INSERT INTO "public"."Room" VALUES ('R005', 'ห้องประชุมนาคราช', 'RT03', '3000', 'EQ02', '', '');
 
 -- ----------------------------
 -- Table structure for RoomType
@@ -194,31 +194,32 @@ INSERT INTO "public"."RoomType" VALUES ('RT03', 'ห้องประชุม�
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."User";
 CREATE TABLE "public"."User" (
+  "employee_id" int4 NOT NULL DEFAULT nextval('"User_employee_id_seq"'::regclass),
   "name" text COLLATE "pg_catalog"."default",
   "lastname" text COLLATE "pg_catalog"."default",
+  "position_id" text COLLATE "pg_catalog"."default" NOT NULL,
+  "department_id" text COLLATE "pg_catalog"."default" NOT NULL,
+  "telephone" text COLLATE "pg_catalog"."default",
   "email" text COLLATE "pg_catalog"."default" NOT NULL,
   "username" text COLLATE "pg_catalog"."default" NOT NULL,
   "password" text COLLATE "pg_catalog"."default" NOT NULL,
-  "verification" "public"."AccountVerification" NOT NULL DEFAULT 'UNVERIFIED'::"AccountVerification",
-  "employee_id" int4 NOT NULL DEFAULT nextval('"User_employee_id_seq"'::regclass),
-  "department_id" text COLLATE "pg_catalog"."default" NOT NULL,
-  "position_id" text COLLATE "pg_catalog"."default" NOT NULL,
-  "telephone" text COLLATE "pg_catalog"."default",
-  "role" "public"."UserRole" NOT NULL DEFAULT 'USER'::"UserRole"
+  "role" "public"."UserRole" NOT NULL DEFAULT 'USER'::"UserRole",
+  "verification" "public"."AccountVerification" NOT NULL DEFAULT 'UNVERIFIED'::"AccountVerification"
 )
 ;
 
 -- ----------------------------
 -- Records of User
 -- ----------------------------
-INSERT INTO "public"."User" VALUES ('APIRAK', 'WONGWAI', 'mammoth.xcode@gmail.com', 'mammoth', '$2b$10$ROTtmpwynLWJBELGKG7S2eQgZMj9XCZQkHqfpd094XWu2umzBQn9.', 'VERIFIED', 1, 'DP04', 'PS02', '0613706871', 'ADMIN');
+INSERT INTO "public"."User" VALUES (2, 'อภิรักษ์', 'ว่องไว', 'PS02', 'DP02', '', 'wongwaimammoth@gmail.com', 'wongwaimammoth', '$2b$10$z/1rcce9bpYhErTuRakL9ez24I6sBk4CIY4g.OMc6UTTsJXaTKFva', 'USER', 'VERIFIED');
+INSERT INTO "public"."User" VALUES (1, 'apirak', 'wongwai', 'PS02', 'DP04', '', 'mammoth.xcode@gmail.com', 'mammoth', '$2b$10$ROTtmpwynLWJBELGKG7S2eQgZMj9XCZQkHqfpd094XWu2umzBQn9.', 'ADMIN', 'VERIFIED');
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
 ALTER SEQUENCE "public"."User_employee_id_seq"
 OWNED BY "public"."User"."employee_id";
-SELECT setval('"public"."User_employee_id_seq"', 121, true);
+SELECT setval('"public"."User_employee_id_seq"', 2, true);
 
 -- ----------------------------
 -- Indexes structure for table Booking
@@ -281,6 +282,18 @@ CREATE UNIQUE INDEX "Role_role_id_key" ON "public"."Role" USING btree (
 ALTER TABLE "public"."Role" ADD CONSTRAINT "Role_pkey" PRIMARY KEY ("role_id");
 
 -- ----------------------------
+-- Indexes structure for table Room
+-- ----------------------------
+CREATE UNIQUE INDEX "Room_room_id_key" ON "public"."Room" USING btree (
+  "room_id" COLLATE "pg_catalog"."default" "pg_catalog"."text_ops" ASC NULLS LAST
+);
+
+-- ----------------------------
+-- Primary Key structure for table Room
+-- ----------------------------
+ALTER TABLE "public"."Room" ADD CONSTRAINT "Room_pkey" PRIMARY KEY ("room_id");
+
+-- ----------------------------
 -- Indexes structure for table RoomType
 -- ----------------------------
 CREATE UNIQUE INDEX "RoomType_roomtype_id_key" ON "public"."RoomType" USING btree (
@@ -306,6 +319,12 @@ CREATE UNIQUE INDEX "User_username_key" ON "public"."User" USING btree (
 -- Primary Key structure for table User
 -- ----------------------------
 ALTER TABLE "public"."User" ADD CONSTRAINT "User_pkey" PRIMARY KEY ("employee_id");
+
+-- ----------------------------
+-- Foreign Keys structure for table Room
+-- ----------------------------
+ALTER TABLE "public"."Room" ADD CONSTRAINT "Room_equipment_id_fkey" FOREIGN KEY ("equipment_id") REFERENCES "public"."Equipment" ("equipment_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "public"."Room" ADD CONSTRAINT "Room_roomtype_id_fkey" FOREIGN KEY ("roomtype_id") REFERENCES "public"."RoomType" ("roomtype_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- ----------------------------
 -- Foreign Keys structure for table User
