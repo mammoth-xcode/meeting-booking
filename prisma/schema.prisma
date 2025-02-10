@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  ADMIN
+  USER
+  MANAGER
+}
+
+enum AccountVerification {
+  VERIFIED
+  UNVERIFIED
+}
+
+// Table-1: User
+model User {
+  employee_id      Int                  @id @default(autoincrement())
+  name             String?
+  lastname         String?
+  position_id      String              // Foreign key to Position
+  department_id    String              // Foreign key to Department
+  telephone        String?
+  email            String               @unique
+  username         String               @unique
+  password         String
+  role          UserRole              @default(USER) // Foreign key to Role
+  verification     AccountVerification  @default(UNVERIFIED)
+
+  // Relation to Position
+  position         Position?            @relation(fields: [position_id], references: [position_id])
+
+  // Relation to Department
+  department       Department?          @relation(fields: [department_id], references: [department_id])
+
+  // // Relation to Role
+  // role             Role?                @relation(fields: [role_id], references: [role_id])
+}
+
+// Table-2: Position
+model Position {
+  position_id      String    @id @unique
+  position_name    String
+
+  // Relation to User (one-to-many)
+  users            User[]    // A Position can have many Users
+}
+
+// Table-3: Department
+model Department {
+  department_id    String    @id @unique
+  department_name  String
+
+  // Relation to User (one-to-many)
+  users            User[]    // A Department can have many Users
+}
+
+// Table-4: Role
+model Role {
+  role_id          String    @id @unique
+  role_name        String
+
+  // // Relation to User (one-to-many)
+  // users            User[]    // A Role can have many Users
+}
+
+// Table-5
+model Room {
+  room_id         String    @id @unique
+  room_name       String
+  roomtype_id       String  // Foreign key to RoomType
+  capacity       String?
+  equipment_id       String // Foreign key to Equipment
+  image_name       String?
+  location       String?
+
+  // Relation to RoomType
+  roomType     RoomType @relation(fields: [roomtype_id], references: [roomtype_id])
+
+  // You don't need a direct relation to Equipment in this case
+  // equipment     Equipment[] // Room can have many Equipment (many-to-many relation)
+
+  // Relation to Equipment
+  equipment     Equipment @relation(fields: [equipment_id], references: [equipment_id])
+}
+
+// Table-6
+model RoomType {
+  roomtype_id         String    @id @unique
+  roomtype_name       String
+
+  // Relation to Room (one-to-many)
+  rooms         Room[]  // A RoomType can have many Rooms
+}
+
+// Table-7
+model Equipment {
+  equipment_id         String    @id @unique
+  equipment_name       String
+
+  // Relation to Room (one-to-many)
+  rooms         Room[]    // Equipment can be assigned to many rooms
+}
+
+// Table-8
+model Booking {
+  booking_id         String    @id @unique
+  room_id       String
+  user_id       Int
+  booking_date       String
+  topic       String
+  start_date       String
+  stop_date       String
+  start_time       String
+  stop_time       String
+  approve_status       String
+  remark       String?
+}

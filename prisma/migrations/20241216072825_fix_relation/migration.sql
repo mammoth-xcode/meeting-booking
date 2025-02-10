@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "Room" ALTER COLUMN "capacity" DROP NOT NULL,
+ALTER COLUMN "location" DROP NOT NULL,
+ALTER COLUMN "image_name" DROP NOT NULL;

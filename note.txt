@@ -1,0 +1,392 @@
+[2024-10-15]
+- PASS  : Protect API with session and JWT Token.
+- Admin
+    -> Users
+        -> GET      OK
+        -> POST     Pending
+        -> PUT      Pending
+        -> DELETE   Pending
+    -> Rooms
+        -> GET      Pending
+        -> POST     Pending
+        -> PUT      Pending
+        -> DELETE   Pending
+
+[2024-10-17]
+- PASS  : Add Menu to Login Page
+- PASS  : Fix MenuContent -> Report for MANAGER
+- PASS  : Add Goto Top Button
+- Admin
+    -> Users
+        -> GET      OK
+        -> POST     Pending
+        -> PUT      Pending
+        -> DELETE   Pending
+    -> Rooms
+        -> GET      Pending
+        -> POST     Pending
+        -> PUT      Pending
+        -> DELETE   Pending
+
+[2024-12-25]
+- Admin
+    -> Users
+        -> GET Users                OK
+        -> POST (Create Users)      OK          :: send email to ADMIN for Approved and notify user for user creation completed.
+        -> PUT Users
+            -> User Edit            OK
+            -> User Verify          OK          :: send email to ADMIN for Approved and notify user for user verification completed.
+            -> User Reset Password  OK          :: send email to ADMIN for Approved and notify user for user reset password completed.
+        -> DELETE Users             OK          :: send email to ADMIN for Approved and notify user for user deletion completed.
+        -> Departments management   pending
+        -> Positions management     pending
+        -> Equipments management    pending
+        -> Rooms management         pending
+        -> Rooms booking management pending
+        -> Rooms booking Report     pending
+		-> RoomType management		pending
+		-> Role management			pending
+- User
+    -> Register                     OK          :: send email to ADMIN for Approved and notify user for user registration completed.
+    -> Login                        OK
+    -> Reset password
+        -> None authen              OK          :: send email to ADMIN for Approved and notify user for user reset password completed.
+        -> With authen (logged in)  OK          :: send email to ADMIN for Approved and notify user for user reset password completed.
+    -> Edit User profile            OK          
+- FIXED     : Remove Footer
+- FIXED     : Add gold circle for ADMIN Avatar
+- ADDED     : Send email            :: send to ADMIN for Approved and notify user for registration completed.
+- ADDED     : constants.js          :: for global constants
+- ADDED     : User registration dupplicate check
+
+[2024-12-26]
+- FIXED     : API (department, position, user-reset, user-resets, user-edit) for Unauthorized checking.
+- ADDED     : Department, Position and Equipment menu (count)
+- Admin
+    -> Users
+        -> Departments management   OK
+        -> Positions management     pending
+        -> Equipments management    pending
+        -> Rooms management         pending
+        -> Rooms booking management pending
+        -> Rooms booking Report     pending
+		-> RoomType management		pending
+		-> Role management			pending
+
+[2024-12-27]
+- FIXED     : send email not return 550 status
+- FIXED     : set default department and position to DP01, PS01
+- ADDED     : constants -> DEFAULT_EMAILS
+                            -> SENDER: 'mammoth.xcode@gmail.com',
+                            -> ADMIN: 'mammoth.xcode@gmail.com',
+- ADDED     : Back Button from Department and Position to Users Management
+- Admin
+    -> Users
+        -> Departments management   	    OK
+        -> Positions management     	    OK
+        -> Equipments management    	    OK
+        -> Rooms management                 pending
+        -> Rooms booking management         pending
+        -> Rooms booking Report             pending
+		-> RoomType management (Optional)	OK
+		-> Role management (Optional)	    pending
+
+[2024-12-28]
+- Admin
+    -> Users
+        -> Departments management   	    OK
+        -> Positions management     	    OK
+        -> Equipments management    	    OK
+        -> Rooms management                 
+            -> show In Used status          OK
+            -> add Rooms                    pending
+            -> edit Rooms                   pending
+            -> delete Rooms                 pending
+        -> Rooms booking management         
+            -> show In Used status          OK
+            -> add Rooms                    pending
+            -> edit Rooms                   pending
+            -> delete Rooms                 pending
+        -> Rooms booking Report             pending
+            -> week, daily, etc.            pending
+		-> RoomType management (Optional)	OK
+		-> Role management (Optional)	    OK
+
+[2025-01-02]
+- Admin
+    -> Rooms management                 
+        -> Rooms list                       OK
+        -> add Rooms                        pending
+        -> edit Rooms                       pending
+        -> delete Rooms                     pending
+- User (view only)
+    -> Rooms list                           OK
+    -> Rooms booking management
+        -> Booking list                     pending
+        -> add Booking                      pending
+        -> edit Booking                     pending
+        -> delete Booking                   pending
+- Manager
+    -> Rooms booking Report                 pending
+
+[2025-02-04]
+- Admin
+    -> Rooms management                 
+        -> Rooms list                       OK
+        -> add Rooms                        OK
+        -> edit Rooms                       pending
+        -> delete Rooms                     OK
+- User (view only)
+    -> Rooms list                           OK
+    -> Rooms booking management
+        -> Booking list                     pending
+        -> add Booking                      pending
+        -> edit Booking                     pending
+        -> delete Booking                   pending
+- Manager
+    -> Rooms booking Report                 pending
+
+[2025-02-05]
+- Change image from app to public           OK
+  global , header
+- Admin
+    -> Rooms management                 
+        -> Rooms list                       OK
+        -> add Rooms                        OK
+        -> edit Rooms                       OK
+        -> delete Rooms                     OK
+- User (view only)
+    -> Rooms list                           OK
+       const image = await import(`/public/images/${imageName}`);
+    -> Rooms booking management
+        -> Booking list
+        -> show booking items with status   OK
+        -> add Booking                      pending
+        -> edit Booking                     pending
+        -> delete Booking                   pending
+- Manager
+    -> Rooms booking Report                 pending
+
+[2025-02-07]
+- Change fetch time                         OK
+- fix: comment line 62 to 69 of @components/ui/calendar.tsx , because it's error when npm run build
+  menu : 30s
+  rooms , bookings : 1s
+  users : 1s
+  other admin management : 1s
+- Add DateTime on the top-right of page
+- Admin
+    -> Rooms management                 
+        -> Rooms list                       OK
+        -> add Rooms                        OK
+        -> edit Rooms                       OK
+        -> delete Rooms                     OK
+- User (view only)
+    -> Rooms list                           OK
+       const image = await import(`/public/images/${imageName}`);
+    -> Rooms booking management
+        -> Booking list
+        -> show booking items with status   OK
+        -> add Booking                      OK
+        -> edit Booking                     pending
+        -> delete Booking                   OK
+- Manager
+    -> Rooms booking Report                 pending
+
+[2025-02-08]
+- Admin                                     OK
+- Register                                  OK
+- Add Room image to Add/Edit Booking        OK
+- Users
+    -> Rooms list                           OK
+    -> Rooms booking management
+        -> Booking list
+        -> show booking items with status   OK
+        -> add Booking                      OK
+        -> edit Booking                     OK
+        -> delete Booking                   OK
+        -> pagination                       OK
+- Manager
+    -> Rooms booking Report                 pending
+        -> Generate new page for html style , then button to print
+- User Manual                               OK
+  -> https://wongwaimammoth.serv00.net/user_manual.pdf
+- About                                     OK
+
+[2025-02-08]
+- Admin                                     OK
+- Register                                  OK
+- Add Room image to Add/Edit Booking        OK
+- Users
+    -> Rooms list                           OK
+    -> Rooms booking management
+        -> Booking list
+        -> show booking items with status   OK
+        -> add Booking                      OK
+        -> edit Booking                     OK
+        -> delete Booking                   OK
+        -> pagination                       OK
+        -> add booking at /room             OK
+- Manager
+    -> Rooms booking Report                 pending
+        -> Generate new page for html style , then button to print
+- User Manual                               OK
+  -> https://wongwaimammoth.serv00.net/user_manual.pdf
+- About                                     OK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<MultiSelect
+              options={equipments.map((equip) => ({
+                value: equip.equipment_id,  // Assuming `equipment_id` is the unique identifier for each equipment
+                label: equip.equipment_name, // Assuming `equipment_name` is the label for the equipment
+              }))}
+              onValueChange={(selectedValues) => {
+                setFormData((prevData) => ({
+                  ...prevData,
+                  equipment_ids: selectedValues, // Update the selected equipment in formData
+                }));
+              }}
+              value={formData.equipment_ids} // Bind the MultiSelect value to formData.equipment_ids
+              placeholder="เลือกอุปกรณ์"
+              variant="inverted"
+              animation={2}
+              maxCount={3} // Limit the maximum selections to 3 items
+            />
+
+
+
+
+
+
+/////// check room in use
+<p>
+            <br />
+            {/* <strong>Status : </strong> */}
+            {loading ? (
+              'ตรวจสอบสถานะ...'
+            ) : isRoomInUse ? (
+              // Ensure use_time exists and is valid
+              isTimeInRange(startTime, stopTime) ? (
+                stopDate === currentDateTime.useDate ? (
+                  <div className="flex items-center">
+                    <BsCalendar2CheckFill className='text-blue-600 font-semibold' />&nbsp;&nbsp;
+                    <span className='text-blue-600 font-semibold'>
+                      {`${INUSED_ROOM} ${formatDate(startDate)} ถึง ${formatDate(stopDate)}`}
+                      {/* {`${INUSED_ROOM} ${formatTime(startTime)} - ${formatTime(stopTime)}`} */}
+                    </span>
+                  </div>
+                  
+                ) : (
+                  // If stop_date is not today, show the start_date and stop_date
+                  <div className="flex items-center">
+                    <BsCalendar2CheckFill className='text-blue-600 font-semibold' />&nbsp;&nbsp;
+                    <span className='text-blue-600 font-semibold'>
+                      {`${INUSED_ROOM} ${formatDate(startDate)} - ${formatDate(stopDate)}`}
+                    </span>
+                  </div>
+                )
+                
+              ) : (
+                <div className="flex items-center">
+                  <BsCheckCircleFill className='text-green-600 font-semibold' />&nbsp;&nbsp;
+                  <span className="text-green-600 font-semibold">{FREE_ROOM}</span>
+                </div>
+              )
+            ) : (
+              <div className="flex items-center">
+                <BsCheckCircleFill className='text-green-600 font-semibold' />&nbsp;&nbsp;
+                <span className="text-green-600 font-semibold">{FREE_ROOM}</span>
+              </div>
+            )}
+          </p>
+          <p>
+            {/* <strong><span className="bg-inherit text-white">Status : </span></strong> */}
+            {loading ? (
+              ''
+            ) : isRoomInUse ? (
+              isTimeInRange(startTime, stopTime) ? (
+                stopDate === currentDateTime.useDate ? (
+                <span
+                    className={
+                      // Apply red text when remaining time is within the last 5 minutes and 0-5 seconds
+                      (remainingTime.minutes === 5 && remainingTime.seconds <= 0) || remainingTime.minutes < 5
+                        ? 'text-red-600 font-semibold'
+                        : ''
+                    }
+                >
+                  <div className="flex items-center">
+                    <BsClockFill className='text-blue-600 font-semibold' />&nbsp;&nbsp;
+                    <span
+                        className={
+                          // Apply red text when remaining time is within the last 5 minutes and 0-5 seconds
+                          (remainingTime.minutes === 5 && remainingTime.seconds <= 0) || remainingTime.minutes < 5
+                            ? 'text-red-600 font-semibold'
+                            : 'text-black font-semibold'
+                        }
+                    >
+                    {`${formatTime(startTime)} - ${formatTime(stopTime)}`}
+                    {` ( จะสิ้นสุดใน ${remainingTime.minutes} นาที${remainingTime.seconds > 0 ? ` ${remainingTime.seconds} วินาที` : ''} )`}
+                    </span>
+                  </div>
+                </span>
+                ) : (
+                  // If stop_date is not today, show the stop_date
+                  // `จะสิ้นสุดใน ${formatDate(stopDate)}`
+                  ''
+                )
+              ) : (
+                ''
+              )
+            ) : (
+              ''
+            )}
+          </p>
