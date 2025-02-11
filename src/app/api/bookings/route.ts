@@ -237,11 +237,11 @@ export async function DELETE(req: NextRequest) {
       select: { role: true },
     });
 
-    // Check if the admin has the required privileges
-    if (admin?.role !== UserRole.ADMIN) {
-      console.error('Not admin!');
-      return NextResponse.json({ error: '403 Forbidden !', details: 'Need Administrator privilege.' }, { status: 403 });
-    }
+    // // Check if the admin has the required privileges
+    // if (admin?.role !== UserRole.ADMIN) {
+    //   console.error('Not admin!');
+    //   return NextResponse.json({ error: '403 Forbidden !', details: 'Need Administrator privilege.' }, { status: 403 });
+    // }
 
     const { booking_id } = await req.json();
 
