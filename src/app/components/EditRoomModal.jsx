@@ -158,7 +158,7 @@ const EditRoomModal = ({ isOpen, onClose, onSave, roomtypes, equipments, roomDat
     
             // local
             // "/api/upload_local"
-            const response2 = await fetch("/api/upload", {
+            const response2 = await fetch("/api/upload_local", {
               method: "POST",
               body: formData2,
             });
