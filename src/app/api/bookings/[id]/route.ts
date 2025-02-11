@@ -49,10 +49,10 @@ export async function PUT(
       select: { role: true },
     });
   
-    if (admin?.role !== UserRole.ADMIN) {
-      console.error('Forbidden: Admin privileges required');
-      return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
-    }
+    // if (admin?.role !== UserRole.ADMIN) {
+    //   console.error('Forbidden: Admin privileges required');
+    //   return NextResponse.json({ error: 'Forbidden: Admin privileges required' }, { status: 403 });
+    // }
 
     const { booking_id, room_id, user_id, booking_date, topic, start_date, stop_date, start_time, stop_time, approve_status, remark } = await req.json();
     
