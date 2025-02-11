@@ -31,8 +31,12 @@ import {
     BsBuildingsFill,
     BsBuildingFill
    } from "react-icons/bs";
+import { useRouter } from 'next/navigation'
 
 const EditRoomModal = ({ isOpen, onClose, onSave, roomtypes, equipments, roomData }) => {
+
+  const router = useRouter()
+
   const [loading, setLoading] = useState(false);
   const [showConflict, setShowConflict] = useState(false);
   const [formData, setFormData] = useState({
@@ -152,6 +156,8 @@ const EditRoomModal = ({ isOpen, onClose, onSave, roomtypes, equipments, roomDat
             const formData2 = new FormData();
             formData2.append("image", selectedImage);
     
+            // local
+            // "/api/upload_local"
             const response2 = await fetch("/api/upload", {
               method: "POST",
               body: formData2,
@@ -159,6 +165,9 @@ const EditRoomModal = ({ isOpen, onClose, onSave, roomtypes, equipments, roomDat
     
             if (response2.ok) {
               console.log("Image uploaded successfully");
+              // router.push('/authenticated')
+              // Force refresh the page
+              // router.reload();
             } else {
               console.log("Failed to upload image");
             }

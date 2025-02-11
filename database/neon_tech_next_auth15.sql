@@ -12,9 +12,19 @@
  Target Server Version : 150010 (150010)
  File Encoding         : 65001
 
- Date: 10/02/2025 11:04:08
+ Date: 11/02/2025 12:15:24
 */
 
+
+-- ----------------------------
+-- Type structure for AccountVerification
+-- ----------------------------
+DROP TYPE IF EXISTS "public"."AccountVerification";
+CREATE TYPE "public"."AccountVerification" AS ENUM (
+  'VERIFIED',
+  'UNVERIFIED'
+);
+ALTER TYPE "public"."AccountVerification" OWNER TO "next_auth15_owner";
 
 -- ----------------------------
 -- Type structure for UserRole
@@ -26,16 +36,6 @@ CREATE TYPE "public"."UserRole" AS ENUM (
   'MANAGER'
 );
 ALTER TYPE "public"."UserRole" OWNER TO "next_auth15_owner";
-
--- ----------------------------
--- Type structure for AccountVerification
--- ----------------------------
-DROP TYPE IF EXISTS "public"."AccountVerification";
-CREATE TYPE "public"."AccountVerification" AS ENUM (
-  'VERIFIED',
-  'UNVERIFIED'
-);
-ALTER TYPE "public"."AccountVerification" OWNER TO "next_auth15_owner";
 
 -- ----------------------------
 -- Sequence structure for User_employee_id_seq
@@ -73,11 +73,13 @@ CREATE TABLE "public"."Booking" (
 INSERT INTO "public"."Booking" VALUES ('B003', 'R005', 1, '20250207', 'นโยบ้ายด้านการศึกษา ปี 2567', '20250207', '20250207', '080000', '163000', 'approved', 'ใช้เวลา 2 วัน');
 INSERT INTO "public"."Booking" VALUES ('B006', 'R003', 1, '20250207', 'test', '20250207', '20250207', '130000', '173000', 'approved', '');
 INSERT INTO "public"."Booking" VALUES ('B001', 'R001', 1, '20250205', 'test topic', '20250205', '20250205', '080000', '170000', 'approved', 'rm');
-INSERT INTO "public"."Booking" VALUES ('B008', 'R003', 1, '20250209', 'การรับนักศึกษา 2568', '20250209', '20250209', '090000', '120000', 'approved', '');
-INSERT INTO "public"."Booking" VALUES ('B007', 'R002', 1, '20250209', 'นโยบายการเงินการคลัง', '20250209', '20250209', '090000', '120000', 'approved', '');
-INSERT INTO "public"."Booking" VALUES ('B002', 'R002', 1, '20250204', 'test 2', '20250205', '20250207', '080000', '160000', 'approved', 'rm2');
 INSERT INTO "public"."Booking" VALUES ('B005', 'R005', 1, '20250207', 'xxx5', '20250207', '20250207', '070000', '080000', 'approved', '');
-INSERT INTO "public"."Booking" VALUES ('B004', 'R005', 1, '20250207', 'ทดสอบการใช้ postgresql บน neontech', '20250210', '20250210', '083000', '170000', 'approved', 'test');
+INSERT INTO "public"."Booking" VALUES ('B009', 'R003', 3, '20250210', 'นโยบ้ายการรับนักศึกษา ปีการศึกษา 2568', '20250210', '20250210', '150000', '170000', 'approved', '');
+INSERT INTO "public"."Booking" VALUES ('B004', 'R005', 2, '20250207', 'ทดสอบการใช้ postgresql บน neontech', '20250210', '20250210', '083000', '170000', 'approved', 'test');
+INSERT INTO "public"."Booking" VALUES ('B002', 'R002', 3, '20250204', 'test 2', '20250205', '20250207', '080000', '160000', 'approved', 'rm2');
+INSERT INTO "public"."Booking" VALUES ('B007', 'R002', 3, '20250209', 'นโยบายการเงินการคลัง', '20250209', '20250209', '090000', '120000', 'approved', '');
+INSERT INTO "public"."Booking" VALUES ('B008', 'R003', 2, '20250209', 'การรับนักศึกษา 2568', '20250209', '20250209', '090000', '120000', 'approved', '');
+INSERT INTO "public"."Booking" VALUES ('B010', 'R002', 1, '20250211', 'ปัจฉิมนิเทศนึกษา 2568', '20250211', '20250211', '080000', '160000', 'approved', '');
 
 -- ----------------------------
 -- Table structure for Department
@@ -213,13 +215,14 @@ CREATE TABLE "public"."User" (
 -- ----------------------------
 INSERT INTO "public"."User" VALUES (2, 'อภิรักษ์', 'ว่องไว', 'PS02', 'DP02', '', 'wongwaimammoth@gmail.com', 'wongwaimammoth', '$2b$10$z/1rcce9bpYhErTuRakL9ez24I6sBk4CIY4g.OMc6UTTsJXaTKFva', 'USER', 'VERIFIED');
 INSERT INTO "public"."User" VALUES (1, 'apirak', 'wongwai', 'PS02', 'DP04', '', 'mammoth.xcode@gmail.com', 'mammoth', '$2b$10$ROTtmpwynLWJBELGKG7S2eQgZMj9XCZQkHqfpd094XWu2umzBQn9.', 'ADMIN', 'VERIFIED');
+INSERT INTO "public"."User" VALUES (3, 'วิภวาณี', 'หมู่ศิริ', 'PS02', 'DP04', '', 'apirak.moz@gmail.com', 'apirak', '$2b$10$oajK3olftLqZggpsEwtwMuHVmbeBlzqZ/cDF12hkXV//YGBeUKYZe', 'USER', 'VERIFIED');
 
 -- ----------------------------
 -- Alter sequences owned by
 -- ----------------------------
 ALTER SEQUENCE "public"."User_employee_id_seq"
 OWNED BY "public"."User"."employee_id";
-SELECT setval('"public"."User_employee_id_seq"', 2, true);
+SELECT setval('"public"."User_employee_id_seq"', 3, true);
 
 -- ----------------------------
 -- Indexes structure for table Booking

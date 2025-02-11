@@ -574,6 +574,10 @@ useEffect(() => {
   }, [isOpen, onClose]);
   //End Escape--------------------------------------------------------------------------------
 
+
+  // if select room from rooms list to booking, set selected room_id
+  if(selectedRooms && formData?.room_id === ''){ handleSelectChange('room_id', selectedRooms.room_id) }
+
   if (!isOpen) return null;
 
   return (

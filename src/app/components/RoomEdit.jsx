@@ -411,9 +411,9 @@ function RoomEditPage({ editable }) {
                 <TableCell>{room.location}</TableCell>
                 <TableCell>
                   {room.image_name ? (
-                    <img src={`/images/${room.image_name}`} alt='' style={{ maxWidth: '100px', maxHeight: '100px', objectFit: 'cover', borderRadius: '5px', border: 'solid 1px #ddd'  }} />
+                    <img src={`/images/${room.image_name}` || `/public/images/${room.image_name}`} alt='' style={{ maxWidth: '100px', maxHeight: '100px', objectFit: 'cover', borderRadius: '5px', border: 'solid 1px #ddd'  }} />
                   ) : (
-                    <img src={`/images/no_image.gif`} alt='' style={{ maxWidth: '100px', maxHeight: '100px', objectFit: 'cover', borderRadius: '5px', border: 'solid 1px #ddd' }} />
+                    <img src={`/images/no_image.gif` || `/public/images/no_image.gif`} alt='' style={{ maxWidth: '100px', maxHeight: '100px', objectFit: 'cover', borderRadius: '5px', border: 'solid 1px #ddd' }} />
                   )}
                 </TableCell>
 

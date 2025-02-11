@@ -25,7 +25,7 @@ function Header() {
       const currentDate = new Date();
       const formattedDateTime = formatDateTime(currentDate);  // Format the date and time
       setCurrentDateTime(formattedDateTime);
-    }, 1000);
+    }, 500);
 
     // Cleanup the interval on unmount
     return () => clearInterval(interval);

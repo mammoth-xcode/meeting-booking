@@ -518,7 +518,7 @@ const isDateTimeRangePassed = (startDate, stopDate, startTime, stopTime) => {
                 <TableCell>
                     {
                         // Find the room by room_id
-                        rooms.find(room => room.room_id === booking.room_id)?.room_name || 'ไม่พบห้อง'
+                        rooms.find(room => room.room_id === booking.room_id)?.room_name || ''
                     }
                 </TableCell>
                 <TableCell>
@@ -617,6 +617,7 @@ const isDateTimeRangePassed = (startDate, stopDate, startTime, stopTime) => {
                         onClick={() => handleEdit(booking)} 
                         variant="slate_blue"
                         className="mr-2 px-3 py-2"
+                        disabled={!(parseInt(booking?.user_id) === parseInt(session?.user?.employee_id) || session?.user?.role === "ADMIN")}
                     >
                         <TooltipProvider>
                         <Tooltip>
@@ -630,7 +631,7 @@ const isDateTimeRangePassed = (startDate, stopDate, startTime, stopTime) => {
                     <Button 
                         onClick={() => handleDelete(booking)} 
                         variant="slate_red" 
-                        disabled={loading}
+                        disabled={!(parseInt(booking?.user_id) === parseInt(session?.user?.employee_id) || session?.user?.role === "ADMIN")}
                         className="text-slate-800 px-3 py-2"
                     >
                         <TooltipProvider>

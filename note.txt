@@ -262,8 +262,81 @@
 - Deploy production                         OK
   -> Github                                 OK
   -> Vercel                                 OK
-  -> rooms upload image not working         pending
-  
+  -> rooms upload image not working         OK
+     *** use github-API
+     *** but vercel re-deploy and
+         web page loss cookie !!
+     *** use another hosting to store it
+- Delete/Edit booking by admin              OK
+- Delete booking by user                    OK
+
+[2025-02-11]
+- Admin                                     OK
+- Register                                  OK
+- Add Room image to Add/Edit Booking        OK
+- Using online database                     OK
+  ;; LOCAL
+  DATABASE_URL="postgresql://neondb_owner:npg_Rbj7DMIkWfK1@ep-curly-bread-a1mljznb-pooler.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
+  ;; ONLINE
+  DATABASE_URL="postgresql://next_auth15_owner:qU4MjcNg3oKJ@ep-falling-bar-a5fo9kvo-pooler.us-east-2.aws.neon.tech/next_auth15?sslmode=require"
+- Users
+    -> Rooms list                           OK
+    -> Rooms booking management
+        -> Booking list
+        -> show booking items with status   OK
+        -> add Booking                      OK
+        -> edit Booking                     OK
+        -> delete Booking                   OK
+        -> pagination                       OK
+        -> add booking at /room             OK
+- Manager
+    -> Rooms booking Report                 pending
+        -> Generate new page for html style , then button to print
+- User Manual                               OK
+  -> https://wongwaimammoth.serv00.net/user_manual.pdf
+- About                                     OK
+- Deploy production                         OK
+  -> Github                                 OK
+  -> Vercel                                 OK
+  -> rooms upload image not working         OK
+     *** use github-API
+     *** but vercel re-deploy and
+         web page loss cookie !!
+     *** use another hosting to store it
+     *** /api/upload = github
+     *** /api/upload_local = localhost
+-> Delete/Edit booking by admin              OK
+-> Delete booking by user                    OK
+
+
+-> use http://tsnuvss.itcomsc.com:1001 to production    OK
+   package.json = "start": "next start -p 80",          OK  *** still current value
+   .env = NEXTAUTH_URL=http://tsnuvss.itcomsc.com:1001  OK  *** only change here
+
+-> edit file RoomBooking.jsx
+   -> TableCell -> Find the room by room_id
+      -> rooms.find(room => room.room_id === booking.room_id)?.room_name || ''
+-> edit file AddRoomBookingModal.jsx
+   -> if select room from rooms list to booking, set selected room_id
+      -> if(selectedRooms && formData?.room_id === ''){ handleSelectChange('room_id', selectedRooms.room_id) }
+-> edit file RoomEdit.jsx
+   -> <img src={`/images/${room.image_name}` || `/public/images/${room.image_name}`}
+-> edit file RoomList.jsx
+   -> roomsWithBookingData -> setInterval 500ms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

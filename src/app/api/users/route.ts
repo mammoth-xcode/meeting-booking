@@ -44,12 +44,12 @@ export async function GET() {
       select: { role: true },
     });
 
-    // console.log(admin?.role)
-    // if admin allow to access api
-    if (admin?.role !== UserRole.ADMIN) {
-      console.error('Need Administrator privilege !');
-      return NextResponse.json({ error: '403 Forbidden !', details: 'Need Administrator privilege !' }, { status: 403 }); // 403 Forbidden
-    }
+    // // console.log(admin?.role)
+    // // if admin allow to access api
+    // if (admin?.role !== UserRole.ADMIN) {
+    //   console.error('Need Administrator privilege !');
+    //   return NextResponse.json({ error: '403 Forbidden !', details: 'Need Administrator privilege !' }, { status: 403 }); // 403 Forbidden
+    // }
 
     const users = await db.user.findMany({
       select: {

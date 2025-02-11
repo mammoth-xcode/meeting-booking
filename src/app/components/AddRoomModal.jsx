@@ -33,6 +33,8 @@ import {
  } from "react-icons/bs";
 
 import { MultiSelect } from "@/components/multi-select";
+import { useRouter } from 'next/navigation'
+
 // const frameworksList = [
 //   {
 //     value: "next.js",
@@ -57,6 +59,9 @@ import { MultiSelect } from "@/components/multi-select";
 // ];
 
 const AddRoomModal = ({ isOpen, onClose, onSave, roomtypes, equipments }) => {
+
+  const router = useRouter()
+
   const [loading, setLoading] = useState(false);
   const [showConflict, setShowConflict] = useState(false);
   const [showUndefined, setShowUndefined] = useState(false);
@@ -184,6 +189,8 @@ const AddRoomModal = ({ isOpen, onClose, onSave, roomtypes, equipments }) => {
         const formData2 = new FormData();
         formData2.append('image', selectedImage);
 
+        // local
+        // "/api/upload_local"
         const response2 = await fetch('/api/upload', {
           method: 'POST',
           body: formData2,
@@ -191,6 +198,9 @@ const AddRoomModal = ({ isOpen, onClose, onSave, roomtypes, equipments }) => {
 
         if (response2.ok) {
           console.log('Image uploaded successfully');
+          // router.push('/authenticated')
+          // Force refresh the page
+          // router.reload();
         } else {
           console.log('Failed to upload image');
         }
